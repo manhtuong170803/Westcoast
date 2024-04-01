@@ -51,7 +51,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                 </div>
                 <div class="col-lg-6">
                     <div class="contact-from-home">
-                        <?php echo do_shortcode('[contact-form-7 id="58ec652" title="Footer Contact From"]');?>
+                        <?php echo do_shortcode('[contact-form-7 id="b457725" title="Contact form 1"]');?>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,9 @@ $container = get_theme_mod( 'understrap_container_type' );
         </div>
     </div>
 
-</div><!-- #wrapper-footer -->
+</div>
+
+<!-- #wrapper-footer -->
 
 <?php // Closing div#page from header.php. ?>
 </div><!-- #page -->

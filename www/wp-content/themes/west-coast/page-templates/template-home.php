@@ -24,7 +24,7 @@ if ( is_front_page() ) {
             <div class="col-lg-8 col-xl-7">
                 <div class="skip-bin-info-holder">
                     <div class="overlay-image-arrow">
-                        <img src="<?php echo get_template_directory_uri();?>/img/Component 10 – 1.png" alt="Arrow Up West Coast">
+                        <img src="<?php echo get_template_directory_uri();?>/img/Component 10 – 1.svg" alt="Arrow Up West Coast">
                     </div>
                     <div class="title">
                         <i class="fa fa-arrow-circle-up"></i> Skin Bin instant quote
@@ -77,8 +77,7 @@ if ( is_front_page() ) {
                 <div class="entry-content">
                     <div class="title">15 Day Storm Special on 9m3 Skip Bins</div>
                     <div class="desc">BIN SERVICES - Perth, Fremantle, Kwinana, Rockingham, Mandurah, 
-                        Pinjarra, Waroona, Harvey, Australind, Bunbury, Busselton, Margaret River
-                        FIND OUT MORE INFORMATION</div>
+                        Pinjarra, Waroona, Harvey, Australind, Bunbury, Busselton, Margaret River</div>
                     <a href="#" class="button confim">FIND OUT MORE INFORMATION</a>
                     <a href="#" class="button text">FIND OUT MORE</a>
                 </div>
