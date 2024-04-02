@@ -48,7 +48,6 @@ $container = get_theme_mod( 'understrap_container_type' );
 					while ( have_posts() ) {
 						the_post();
 						get_template_part( 'loop-templates/content', 'single' );
-						understrap_post_nav();
 
 						// If comments are open or we have at least one comment, load up the comment template.
 						
@@ -72,7 +71,9 @@ $container = get_theme_mod( 'understrap_container_type' );
 			</div>
 
 		</div><!-- .row -->
-
+		<div class="post-navigation-options">
+			<?php understrap_post_nav();?>
+		</div>
 	</div><!-- #content -->
 
 </div><!-- #single-wrapper -->
