@@ -43,3 +43,11 @@ if ( class_exists( 'Jetpack' ) ) {
 foreach ( $understrap_includes as $file ) {
 	require_once get_theme_file_path( $understrap_inc_dir . $file );
 }
+
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+
+// To change add to cart text on product archives(Collection) page
+add_filter( 'woocommerce_product_single_add_to_cart_text', 'woocommerce_custom_add_to_cart_text' );  
+function woocommerce_custom_add_to_cart_text() {
+    return __( 'ORDER THIS SKIP BIN', 'woocommerce' );
+}

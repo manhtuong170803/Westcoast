@@ -894,6 +894,9 @@ body {
             margin: 0;
             padding: 0;
             font-weight: 500;
+            a {
+                color: white;
+            }
             &::before {
                 content: "\f0a9";
                 display: inline-block;
@@ -1020,9 +1023,12 @@ body {
 }
 
 #main {
-    .entry-content {
+    .entry-content,.entry-summary,.woocommerce-tabs {
         h2 {
             margin-bottom: 1em;
+        }
+        h3 {
+            color: $primary;
         }
         ul {
             list-style: none;
@@ -1113,6 +1119,10 @@ body {
         border-radius: 15px;
         overflow: hidden;
         margin-bottom: 30px;
+        min-height: 500px;
+        @media(max-width:$lg) {
+            min-height: auto;
+        }
        
         .archive-post-image {
             height: 200px;
@@ -1136,8 +1146,173 @@ body {
                 margin-bottom: 15px;
             }
             .entry-metadata {
-
+              display: flex;
+              align-items: center;
+              @media(max-width:$xl) {
+                display: block;
+                }
+              .data {
+                font-weight: 300;
+                margin-left: 15px;
+                .fa {
+                    color: $primary;
+                }
+              }
             }
         }
     }
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs {
+    display: none;
+}
+.woocommerce div.product .product_title {
+    font-size: 48px;
+    font-weight: 300;
+    color: $primary;
+}
+.product-single-dimensions {
+    font-weight: 300;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    strong {
+        font-weight: 500;
+    }
+}
+
+.product-single-sizing {
+    .cricle {
+        width: 100%;
+        padding-top: 100%;
+        background: $primary;
+        border-radius: 50%;
+        position: relative;
+        @media(max-width:$lg) {
+            margin-bottom: 30px;
+        }
+        @media(max-width:$md) {
+            margin-top: 15px;
+        }
+        .abs-circle-holder {
+            position: absolute;
+            top: 15px;
+            bottom: 15px;
+            left: 15px;
+            right: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            line-height: 1;
+            color: black;
+            .content-holder {
+                font-weight: 500;
+                font-size: 16px;
+    
+            }
+            .icon {
+                margin-top: 15px;
+                img {
+                    border-radius: 0px !important;
+                }
+            }
+        }
+     
+    }
+}
+
+#woocommerce-wrapper {
+    margin-top: 100px;
+    @media(max-width:$md) {
+        margin-top: 60px;
+    }
+}
+
+.woocommerce-product-details__short-description {
+    margin-top: 30px;
+}
+
+.woocommerce-product-gallery__wrapper {
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    overflow: hidden;
+}
+
+.product-image-instant-quote-holder {
+    background: $secondary-300;
+    padding: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    .title {
+        font-size: 30px;
+        font-weight: bold;
+        color: $primary;
+    }
+    .desc {
+        font-weight: 300;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .product-price-holder {
+        background: #161616;
+        padding: 10px 20px;
+        border: 4px dashed $primary;
+        border-radius: 20px;
+        font-size: 36px;
+        font-weight: bold;
+        margin-top: 10px;
+        .inc-gst {
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 500;
+        }
+    }
+}
+
+.hide-right-side-variations {
+    display: none;
+}
+.reset_variations {
+    color: $primary;
+    &:hover {
+        color: $primary-500;
+    }
+}
+.posted_in {
+    a {
+        color: $primary;
+    }
+}
+
+.woocommerce-variation-price {
+    background: #161616;
+        padding: 10px 20px;
+        border: 4px dashed $primary;
+        border-radius: 20px;
+        font-size: 36px;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        .price {
+            color: white !important;
+        }
+        .inc-gst {
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 500;
+        }
+}
+
+.single_add_to_cart_button {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: black !important;
+    background: $primary !important;
+    border: none !important;
+    text-align: center;
+    display: block;
+    border-radius: 15px !important;
+    width: 100%;
 }
