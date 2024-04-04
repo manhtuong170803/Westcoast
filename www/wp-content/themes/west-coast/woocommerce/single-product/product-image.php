@@ -52,11 +52,27 @@ $wrapper_classes   = apply_filters(
 		do_action( 'woocommerce_product_thumbnails' );
 		?>
 	</div>
+	<?php if ($product->is_type('variable')) { ?>
 	<div class="product-image-instant-quote-holder">
 		<div class="title">Instant Quote</div>
 		<div class="desc">Please fill in your suburb and days you'd like to hire the skip-bin
 			and you will be provided with an instant quote on this product.
 		</div>	
+
+		<div id="single-product-autocomplete">
+			<div class="input-group">
+				<i class="fa fa-location-arrow"></i><input type="text" 
+				id="single-product-autocomplete-input" onKeyUp="singleProductKeyup(this)"
+			 onChange="singleProductKeyup(this)" >
+			</div>
+			
+			 <ul id="single-product-autocomplete-list">
+
+			 </ul>
+		</div>
+		<div id="single-product-placeholder" class="product-price-holder">
+			Fill in the deatils above
+		</div>
 		<!-- <div class="product-price-holder">
 			<?php //echo $product->get_price_html();?> <div class="inc-gst">inc.GST</div>
 		</div> -->
@@ -131,5 +147,6 @@ $wrapper_classes   = apply_filters(
 			?>
 			
 	</div>
+	<?php } ?>
 	
 </div>

@@ -18,9 +18,12 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
+global $product;
 the_title( '<h1 class="product_title entry-title">', '</h1>' );
 ?>
+
+<?php if ($product->is_type('variable')) { ?>
+
 <!-- <div class="product-single-dimensions">
 	Dimensions: <strong><?php //the_field('dimension');?></strong>
 </div> -->
@@ -30,7 +33,7 @@ the_title( '<h1 class="product_title entry-title">', '</h1>' );
 			<div class="cricle">
 				<div class="abs-circle-holder">
 					<div class="content-holder">
-							Approx x 4 traders
+							Approx x <?php //the_field('approx_trailer');?>4 trailers
 					</div>
 					<div class="icon">
 						<img src="<?php echo get_template_directory_uri();?>/img/trailer.svg" alt="Product Trailer">
@@ -42,7 +45,7 @@ the_title( '<h1 class="product_title entry-title">', '</h1>' );
 			<div class="cricle">
 				<div class="abs-circle-holder">
 					<div class="content-holder">
-							Approxx 16 wheelie bins 
+							Approxx x <?php //the_field('approx_bin');?>16 wheelie bins 
 					</div>
 					<div class="icon">
 						<img src="<?php echo get_template_directory_uri();?>/img/home-bin.svg" alt="Product home bin">
@@ -52,3 +55,4 @@ the_title( '<h1 class="product_title entry-title">', '</h1>' );
 		</div>
 	</div>
 </div>
+<?php } ?>

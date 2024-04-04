@@ -51,3 +51,5 @@ add_filter( 'woocommerce_product_single_add_to_cart_text', 'woocommerce_custom_a
 function woocommerce_custom_add_to_cart_text() {
     return __( 'ORDER THIS SKIP BIN', 'woocommerce' );
 }
+
+remove_filter('get_the_excerpt', 'wp_trim_excerpt');

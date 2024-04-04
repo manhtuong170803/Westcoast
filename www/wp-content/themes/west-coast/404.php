@@ -12,6 +12,13 @@ get_header();
 
 $container = get_theme_mod( 'understrap_container_type' );
 ?>
+<div class="page-header-holder">
+	<div class="container">
+		<header class="entry-header">
+			<?php the_title( '<h1 class="entry-title">', '</h1>');?>
+		</header>
+	</div>
+</div>
 
 <div class="wrapper" id="error-404-wrapper">
 
@@ -85,6 +92,6 @@ $container = get_theme_mod( 'understrap_container_type' );
 	</div><!-- #content -->
 
 </div><!-- #error-404-wrapper -->
-
+<hr>
 <?php
 get_footer();

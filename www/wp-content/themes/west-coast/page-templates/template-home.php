@@ -89,13 +89,95 @@ if ( is_front_page() ) {
         <div class="container">
             <h2><i class="fa fa-arrow-circle-down"></i>Select the right skip bin for your project </h2>
             <div class="home-products">
+                <?php
+                    $args = array(
+                        'post_type' => 'product',
+                        'orderby' => 'title',
+                        'order' => 'ASC',
+                        'product_cat' => 'Bin',
+                        'posts_per_page' => 4
+                    );
+                    $index = 0;
+                    $loop = new WP_Query($args);
+                    while($loop->have_posts()) : $loop->the_post; global $product;
+                    $index++;
+                ?>
                 <div class="home-product">
                     <div class="row">
                         <div class="col-xl-4 col-md-6">
-                            <img src="<?php echo get_template_directory_uri();?>/img/product-placeholder.png" alt="Product Placeholder" width= "100%">
+                            <?php $image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'medium');?>
+                            <a href='<?php the_permalink();?>'>
+                                <img src="<?php echo $image[0];?>" alt="<?php the_field('full_title'); ?>">
+                            </a>
+
                         </div>
                         <div class="col-xl-4 col-md-6">
-                            <div class="title">4 Cubic Metre Skip </div>
+                            <a href='<?php the_permalink();?>' class="title"><?php the_field('full_title')?></a>
+                            <?php the_excerpt();?>
+                            <!-- <ul>
+                                <li>Garden & Household clean-up</li>
+                                <li>Heavy Loads (dirt, concrete, bricks or rubble)</li>
+                                <li>Ideal for narrow alleys or small streets</li>
+                                <li>Building Sites</li>
+                            </ul> -->
+                        </div>
+                        <div class="col-xl-4 col-lg-12">
+                            <div class="home-product-circles">
+                               <div class="row">
+                                    <div class="offset-lg-0 offset-md-2 col-xl-6 col-lg-3 col-md-4 col-sm-6 col-6">
+                                        <div class="cricle">
+                                           <div class="abs-circle-holder">
+                                            <div class="content-holder">
+                                                    Approx x <?php //the_field('approx_trailer');?> 4 traders
+                                            </div>
+                                            <div class="icon">
+                                                <img src="<?php echo get_template_directory_uri();?>/img/trailer.svg" alt="Product Trailer">
+                                            </div>
+                                           </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-3 col-md-4 col-sm-6 col-6">
+                                        <div class="cricle">
+                                           <div class="abs-circle-holder">
+                                                <div class="content-holder">
+                                                        Approx x <?php //the_field('approx_bin');?> 16 wheelie bins 
+                                                </div>
+                                                <div class="icon">
+                                                    <img src="<?php echo get_template_directory_uri();?>/img/home-bin.svg" alt="Product home bin">
+                                                </div>
+                                           </div>
+                                        </div>
+                                    </div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href='<?php the_permalink();?>' class="abs-holder-button">GET A QUOTE FOR THIS SKIP BIN</a>
+                </div>
+                
+               
+                <?php the_title();?>
+                <?php endwhile;?>
+                <?php wp_reset_query();?>
+                
+                <!-- <?php 
+                    // if ($product->get_image_id()){
+                    //     ?>
+                    //     style="backgroud-image:url(<?php
+                    //     echo wp_get_attachment_image_src($product->get_image_id(), 'medium')[0];
+                    //     ?>);"
+                    //     <?php
+                    // }
+                ?> -->
+
+                <!-- <div class="home-product">
+                    <div class="row">
+                        <div class="col-xl-4 col-md-6">
+                            <img src="<?php echo get_template_directory_uri();?>/img/6m3-Skip-Bin.png" alt="Product Placeholder" width= "100%">
+                        </div>
+                        <div class="col-xl-4 col-md-6">
+                            <div class="title">4 Cubic Metre Skip</div>
                             <ul>
                                 <li>Garden & Household clean-up</li>
                                 <li>Heavy Loads (dirt, concrete, bricks or rubble)</li>
@@ -106,7 +188,7 @@ if ( is_front_page() ) {
                         <div class="col-xl-4 col-lg-12">
                             <div class="home-product-circles">
                                <div class="row">
-                                    <div class="offset-lg-0 offset-md-2 col-xl-6 col-lg-3 col-md-4 col-sm-6 col-6">
+                                    <div class=" offset-lg-0 offset-md-2 col-xl-6 col-lg-3 col-md-4 col-sm-6 col-6">
                                         <div class="cricle">
                                            <div class="abs-circle-holder">
                                             <div class="content-holder">
@@ -121,12 +203,12 @@ if ( is_front_page() ) {
                                     <div class="col-xl-6 col-lg-3 col-md-4 col-sm-6 col-6">
                                         <div class="cricle">
                                            <div class="abs-circle-holder">
-                                                <div class="content-holder">
-                                                        Approxx 16 wheelie bins 
-                                                </div>
-                                                <div class="icon">
-                                                    <img src="<?php echo get_template_directory_uri();?>/img/home-bin.svg" alt="Product home bin">
-                                                </div>
+                                            <div class="content-holder">
+                                            Approxx 16 wheelie bins 
+                                            </div>
+                                            <div class="icon">
+                                                <img src="<?php echo get_template_directory_uri();?>/img/home-bin.svg" alt="Product Trailer">
+                                            </div>
                                            </div>
                                         </div>
                                     </div>
@@ -276,7 +358,7 @@ if ( is_front_page() ) {
                         </div>
                     </div>
                     <div class="abs-holder-button">GET A QUOTE FOR THIS SKIP BIN</div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
