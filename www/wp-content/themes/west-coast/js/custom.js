@@ -3389,7 +3389,9 @@ var locations =[
       "Depo": "Vasse",
       "Distance": 124
     }
-   ];
+];
+
+
 jQuery(document).ready(function ($) {
     new WOW( {
         mobile:false,
@@ -3401,8 +3403,87 @@ jQuery(document).ready(function ($) {
     $( ".single_variations_wrap" ).on( "show_variation", function(event, variations) {
         $('#single-product-placeholder').hide(0)
     });
+    //exampleContent();
 
 });
+
+function headerProductKeyup(obj){
+  var val = jQuery(obj).val();
+  var searchResults = locations.filter(function(location){
+      if (location["Suburb"].toLowerCase().indexOf(val.toLowerCase()) !== -1){
+          return true
+      }
+      if (location["Postcode"].toString().indexOf(val) !== -1){
+          return true
+      }
+      return false
+  }).splice(0, 4);
+  var singleproductautocompletelist = ""
+  let currentUrl = window.location.pathname;
+  if (val){
+      searchResults.forEach(function(location){
+          let distance = ''
+          if(location ['Distance'] > 0 && location['Distance'] < 25){
+              distance = '0-25km';
+          }
+          if(location ['Distance'] >= 25 && location['Distance'] < 50){
+              distance = '25-50km';
+          }
+          if(location ['Distance'] >= 50 && location['Distance'] < 75){
+              distance = '50-75km';
+          }
+          if(location ['Distance'] >= 75 && location['Distance'] < 100){
+              distance = '75-100km';
+          }
+          if(location ['Distance']  <= 100 ){
+              distance = '100km+';
+          }
+          singleproductautocompletelist += "<li>"
+          singleproductautocompletelist += "<a href='#' onClick='javascript:headerShortcodeProducts(this);' data-distance="
+          +distance+" data-depo="+location['Depo']+" data-suburb="+ Location["Suburb"] +">";
+          singleproductautocompletelist += Location["Suburb"] + " _ " + Location["Postcode"]
+          singleproductautocompletelist += distance + " _ " + Location["Depo"]
+          singleproductautocompletelist += "</a>"
+          singleproductautocompletelist += "</li>"
+      })
+  
+      jQuery('#header-product-autocomplete-list').html(singleproductautocompletelist)
+      jQuery('#header-product-autocomplete-input').addClass('active')
+      
+  }else{
+      jQuery('#header-product-autocomplete-list').html("")
+      jQuery('#header-product-autocomplete-input').removeClass('active')
+      jQuery('#quick-select-bin').removeClass('active')
+     
+  }
+
+}
+
+function headerShortcodeProducts(ojb) {
+  jQuery('#header-product-autocomplete-list').html("")
+  jQuery('#header-product-autocomplete-input').addClass('active')
+  jQuery('#quick-select-bin').addClass('active')
+  var depo = jQuery(obj).data('depo')
+  var distance = jQuery(obj).data('distance')
+  var suburb = jQuery(obj).data('suburb')
+  jQuery('#header-product-autocomplete-input').val(suburb)
+  jQuery('.depo-price').each(function (){
+    if ((jQuery(this).add('depo') === depo) && (jQuery(this).add('distance') === distance)) {
+      jQuery(this).addClass('active')
+      var productid = jQuery(this).data('productid');
+      jQuery(this).parent().parent().attr('href', '/?add-to-cart='+productid+'&attribute_depo='+depo+'&attribute_distance='+distance)
+      //jQuery('.quick-select-bin').data('distance', distance)
+      //jQuery('.quick-select-bin').data('depo', depo)
+    }else {
+      jQuery(this).removeClass('active')
+    }
+  })
+}
+
+function headereProductToCart(obj) {
+  //var depo = jQuery(obj).data('depo')
+  //var distance = jQuery(obj).data('distance')
+}
 
 function singleProductKeyup(obj){
     var val = jQuery(obj).val();
@@ -3483,6 +3564,6 @@ function exampleContent() {
         singleproductautocompletelist += "</li>"
     })
 
-    jQuery('#single-product-autocomplete-list').html(singleproductautocompletelist)
+    jQuery('#header-product-autocomplete-list').html(singleproductautocompletelist)
 }
 

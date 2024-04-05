@@ -62,8 +62,8 @@ $wrapper_classes   = apply_filters(
 		<div id="single-product-autocomplete">
 			<div class="input-group">
 				<i class="fa fa-location-arrow"></i><input type="text" 
-				id="single-product-autocomplete-input" onKeyUp="singleProductKeyup(this)"
-			 onChange="singleProductKeyup(this)" >
+				id="single-product-autocomplete-input" onKeyUp="singleProductKeyup(this);"
+			 onChange="singleProductKeyup(this);" >
 			</div>
 			
 			 <ul id="single-product-autocomplete-list">
