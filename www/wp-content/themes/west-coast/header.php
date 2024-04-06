@@ -72,7 +72,7 @@ $navbar_type       = get_theme_mod( 'understrap_navbar_type', 'collapse' );
 					aria-controls="navbarNavDropdow" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation',
 					'understrap' );?>">
 					<span>Menu</span><i class="fa fa-bars"></i>
-				</button>
+					</button>
 				</div>
 
 				<?php 
@@ -140,20 +140,20 @@ $navbar_type       = get_theme_mod( 'understrap_navbar_type', 'collapse' );
 			</div>
 			<div class="quick-select-all-bins">
 				<div class="row">
-					<!-- <?php
-						// $args = array(
-						// 	'post_type' => 'product',
-						// 	'orderby' => 'title',
-						// 	'order' => 'ASC',
-						// 	'product_cat' => 'Bin',
-						// 	'posts_per_page' => 4
-						// );
-						// $index = 0;
-						// $loop = new WP_Query($args);
-						// while($loop->have_posts() ) : $loop->the_post;
+					<?php
+						$args = array(
+							'post_type' => 'product',
+							'orderby' => 'title',
+							'order' => 'ASC',
+							'product_cat' => 'Bin',
+							'posts_per_page' => 4
+						);
+						$index = 0;
+						$loop = new WP_Query($args);
+						while($loop->have_posts() ) : $loop->the_post;
 						
-						//global $product;
-						// $index++;
+						global $product;
+						$index++;
 						$varitation_html= "";
 						if ($product->is_type('variable')){
 							$vailable_variations = $product->get_available_variations();
@@ -161,17 +161,17 @@ $navbar_type       = get_theme_mod( 'understrap_navbar_type', 'collapse' );
 								$attribute_depo = $variations['attributes']['attribute_depo'];
 								$attribute_distance = $variations['attributes']['attribute_distance'];
 								$price_html = $variations['price_html'];
-								$variations_html .= <div
-														class='depo-price'
-														data-productid='$product->id'
-														data-depo='$attribute_depo'
-														data-distance='$attribute_distance'>";"
-								$variations_html .= $price_html;
-								$variations_html .= </div>;
+								// $variations_html .= <div
+								// 						class='depo-price'
+								// 						data-productid='$product->id'
+								// 						data-depo='$attribute_depo'
+								// 						data-distance='$attribute_distance'>";"
+								// $variations_html .= $price_html;
+								// $variations_html .= </div>;
 
 							}
 						}
-					?> -->
+					?>
 					<div class="col-lg-3">
 						<a 
 							href="#" 
@@ -182,13 +182,13 @@ $navbar_type       = get_theme_mod( 'understrap_navbar_type', 'collapse' );
 							data-depo=""
 						>
 							<div class="title">
-								<?php //the_title();?>
+								<?php the_title();?>
 								4m3 Skip Bin
 							</div>
-							<?php //$image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'medium');?>
-							<img src="<?php //echo $image[0];?>" alt="<?php //the_field('full_title'); ?>">
+							<?php $image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'medium');?>
+							<img src="<?php echo $image[0];?>" alt="<?php the_field('full_title'); ?>">
 							<div class="price">
-								<?php //echo $product->get_price_html();?>
+								<?php echo $product->get_price_html();?>
 								$100
 							</div>
 							<div class="hire">
@@ -199,14 +199,14 @@ $navbar_type       = get_theme_mod( 'understrap_navbar_type', 'collapse' );
 									<div>
 										<img src="<?php echo get_template_directory_uri();?>/img/trailer.svg" alt="Product Trailer" width=100%>
 									</div>
-									x <?php //the_field('approx_trailer');?> 4
+									x <?php the_field('approx_trailer');?> 
 								</div>
 								<div class="spacer"></div>
 								<div class="info">
 									<div>
 										<img src="<?php echo get_template_directory_uri();?>/img/home-bin.svg" alt="Product home bin" width=66%>
 									</div>
-									x <?php //the_field('approx_bin');?> 16
+									x <?php the_field('approx_bin');?>
 								</div>
 							</div>
 							<div class="quick-button">
@@ -214,8 +214,8 @@ $navbar_type       = get_theme_mod( 'understrap_navbar_type', 'collapse' );
 							</div>
 						</a>
 					</div>
-					<!-- <?php //endwhile;?>
-					<?php //wp_reset_query();?> -->
+					<?php endwhile;?>
+					<?php wp_reset_query();?>
 				</div>
 			</div>
 		</div>

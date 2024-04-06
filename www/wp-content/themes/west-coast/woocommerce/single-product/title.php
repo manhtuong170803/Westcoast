@@ -24,16 +24,16 @@ the_title( '<h1 class="product_title entry-title">', '</h1>' );
 
 <?php if ($product->is_type('variable')) { ?>
 
-<!-- <div class="product-single-dimensions">
-	Dimensions: <strong><?php //the_field('dimension');?></strong>
-</div> -->
+<div class="product-single-dimensions">
+	Dimensions: <strong><?php the_field('dimensions');?></strong>
+</div>
 <div class="product-single-sizing">
 	<div class="row">
 		<div class="col-lg-4">
 			<div class="cricle">
 				<div class="abs-circle-holder">
 					<div class="content-holder">
-							Approx x <?php //the_field('approx_trailer');?>4 trailers
+							Approx x <?php the_field('approx_trailer');?> trailers
 					</div>
 					<div class="icon">
 						<img src="<?php echo get_template_directory_uri();?>/img/trailer.svg" alt="Product Trailer">
@@ -45,7 +45,7 @@ the_title( '<h1 class="product_title entry-title">', '</h1>' );
 			<div class="cricle">
 				<div class="abs-circle-holder">
 					<div class="content-holder">
-							Approxx x <?php //the_field('approx_bin');?>16 wheelie bins 
+							Approxx x <?php the_field('approx_bin');?> wheelie bins 
 					</div>
 					<div class="icon">
 						<img src="<?php echo get_template_directory_uri();?>/img/home-bin.svg" alt="Product home bin">
