@@ -127,7 +127,7 @@ if ( is_front_page() ) {
                                         <div class="cricle">
                                            <div class="abs-circle-holder">
                                             <div class="content-holder">
-                                                    Approx x <?php //the_field('approx_trailer');?> 4 traders
+                                                    Approx x <?php the_field('approx_trailer');?>  traders
                                             </div>
                                             <div class="icon">
                                                 <img src="<?php echo get_template_directory_uri();?>/img/trailer.svg" alt="Product Trailer">
@@ -139,7 +139,7 @@ if ( is_front_page() ) {
                                         <div class="cricle">
                                            <div class="abs-circle-holder">
                                                 <div class="content-holder">
-                                                        Approx x <?php //the_field('approx_bin');?> 16 wheelie bins 
+                                                        Approx x <?php the_field('approx_bin');?>  wheelie bins 
                                                 </div>
                                                 <div class="icon">
                                                     <img src="<?php echo get_template_directory_uri();?>/img/home-bin.svg" alt="Product home bin">

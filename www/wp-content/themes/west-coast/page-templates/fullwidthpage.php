@@ -22,6 +22,13 @@ if ( is_page_template( 'page-templates/no-title.php' ) ) {
 	$wrapper_id = 'no-title-page-wrapper';
 }
 ?>
+<div class="page-header-holder">
+	<div class="container">
+		<header class="entry-header">
+			<?php the_title( '<h1 class="entry-title">', '</h1>');?>
+		</header>
+	</div>
+</div>
 
 <div class="wrapper" id="<?php echo $wrapper_id; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- ok. ?>">
 

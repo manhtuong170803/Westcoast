@@ -36,28 +36,48 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 		<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
 
 		<div class="row" id="customer_details">
-			<div class="col-12 col-sm-7">
+			<div class="col-12 col-md-6">
 				<?php do_action( 'woocommerce_checkout_billing' ); ?>
+				<?php do_action( 'woocommerce_checkout_shipping' ); ?>
 			</div>
 
-			<div class="col-12 col-sm-5">
-				<?php do_action( 'woocommerce_checkout_shipping' ); ?>
+			<div class="col-12 col-md-6">
+				<h3 id="order_review_heading"><?php esc_html_e( 'Cart Summary', 'woocommerce' ); ?></h3>
+				<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
+				<div id="order_review" class="woocommerce-checkout-review-order">
+					<?php do_action( 'woocommerce_checkout_order_review' ); ?>
+				</div>
+				<div class="woocommerce-checkout-acceptable-waste">
+					<h3>Acceptable Waste</h3>
+					<p>Owing to envirommental obligations, we can only accpet certain waste products in our skip bins.</p>
+					<ul>
+						<li><i class="fa fa-check-circle"></i>Sand</li>
+						<li><i class="fa fa-check-circle"></i>Rubble</li>
+						<li><i class="fa fa-check-circle"></i>Bricks</li>
+						<li><i class="fa fa-check-circle"></i>Timer</li>
+						<li><i class="fa fa-check-circle"></i>Plastics</li>
+					</ul>
+					<ul>
+						<li><i class="fa fa-check-circle"></i>Cardboard</li>
+						<li><i class="fa fa-check-circle"></i>Paper</li>
+						<li><i class="fa fa-check-circle"></i>Steel</li>
+						<li><i class="fa fa-check-circle"></i>Furnture</li>
+						<li><i class="fa fa-check-circle"></i>Green Waste</li>
+					</ul>
+					<ul class="not-allowed">
+						<li><i class="fa fa-check-circle"></i>Sand</li>
+						<li><i class="fa fa-check-circle"></i>Rubble</li>
+						<li><i class="fa fa-check-circle"></i>Bricks</li>
+						<li><i class="fa fa-check-circle"></i>Timer</li>
+						<li><i class="fa fa-check-circle"></i>Plastics</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 
 		<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
 
-	<?php endif; ?>
-
-	<?php do_action( 'woocommerce_checkout_before_order_review_heading' ); ?>
-
-	<h3 id="order_review_heading"><?php esc_html_e( 'Your order', 'woocommerce' ); ?></h3>
-
-	<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
-
-	<div id="order_review" class="woocommerce-checkout-review-order">
-		<?php do_action( 'woocommerce_checkout_order_review' ); ?>
-	</div>
+	<?php endif; ?>	
 
 	<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
 

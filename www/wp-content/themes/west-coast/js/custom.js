@@ -3393,15 +3393,17 @@ var locations =[
 
 
 jQuery(document).ready(function ($) {
-    new WOW( {
-        mobile:false,
-    }).init();
+    // new WOW( {
+    //     mobile:false,
+    // }).init();
 
-    $( ".variations_from" ).on( "woocommerce_variation_select_change", function() {
-        $('#single-product-placeholder').show(0)
+    $( ".variation_from" ).on( "woocommerce_variation_select_change", function() {
+      // console.log('something changed');
+        $('#single-product-placeholder').show(0);
     });
-    $( ".single_variations_wrap" ).on( "show_variation", function(event, variations) {
-        $('#single-product-placeholder').hide(0)
+    $( ".single_variation_wrap" ).on( "show_variation", function(event, variation) {
+       console.log('fired');
+        $('#single-product-placeholder').hide(0);
     });
     //exampleContent();
 
@@ -3487,6 +3489,7 @@ function headereProductToCart(obj) {
 
 function singleProductKeyup(obj){
     var val = jQuery(obj).val();
+
     var searchResults = locations.filter(function(location){
         if (location["Suburb"].toLowerCase().indexOf(val.toLowerCase()) !== -1){
             return true
@@ -3498,6 +3501,7 @@ function singleProductKeyup(obj){
     }).splice(0, 4);
     var singleproductautocompletelist = ""
     let currentUrl = window.location.pathname;
+
     if (val){
         searchResults.forEach(function(location){
             let distance = ''
@@ -3516,20 +3520,22 @@ function singleProductKeyup(obj){
             if(location ['Distance']  <= 100 ){
                 distance = '100km+';
             }
-            singleproductautocompletelist += "<li>"
-            singleproductautocompletelist += "<a href='" + currentUrl + " ?attribute_depo="+location['Depo']
-            +"&attribute_distance="+distance+"'>";
-            singleproductautocompletelist += Location["Suburb"] + " _ " + Location["Postcode"]
-            singleproductautocompletelist += "</a>"
-            singleproductautocompletelist += "</li>"
+
+            singleproductautocompletelist += "<li>";
+            singleproductautocompletelist += "<a href='" + currentUrl + "?attribute_depo="+location['Depo'] +"&attribute_distance="+distance+"'>";
+            singleproductautocompletelist += location["Suburb"] + " _ " + location["Postcode"];
+            singleproductautocompletelist += "</a>";
+            singleproductautocompletelist += "</li>";
         })
     
         jQuery('#single-product-autocomplete-list').html(singleproductautocompletelist)
         jQuery('#single-product-autocomplete-input').addClass('active')
+       
         
     }else{
         jQuery('#single-product-autocomplete-list').html("")
         jQuery('#single-product-autocomplete-input').removeClass('active')
+        
        
     }
 

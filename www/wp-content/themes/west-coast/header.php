@@ -161,6 +161,10 @@ $navbar_type       = get_theme_mod( 'understrap_navbar_type', 'collapse' );
 								$attribute_depo = $variations['attributes']['attribute_depo'];
 								$attribute_distance = $variations['attributes']['attribute_distance'];
 								$price_html = $variations['price_html'];
+								
+
+
+
 								// $variations_html .= <div
 								// 						class='depo-price'
 								// 						data-productid='$product->id'
