@@ -11,9 +11,9 @@ defined( 'ABSPATH' ) || exit;
 
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 	<div class="archive-post-image">
-		<?php if (has_post_thumbnail()){ ?>
+		<!-- <?php if (has_post_thumbnail()){ ?>
 			style="background-image:url(<?php echo get_the_post_thumbnail_url();?>);"
-		<?php } ?> 
+		<?php } ?>  -->
 	</div>
 	<div class="article-body-holder">
 		<header class="entry-header">
@@ -25,12 +25,12 @@ defined( 'ABSPATH' ) || exit;
 			?>
 		</header><!-- .entry-header -->
 		<div class="entry-content">
-			<?php the_post_summary(); ?>
+			<?php //the_post_summary(); ?>
 		</div><!-- .entry-content -->
 		<div class="entry-metadata">
 			<a href="<?php the_permalink();?>" class="button">Read More</a>
 			<div class="date">
-				<i class="fa fa-calendar"></i> <?php echo get_the_dat('d.m.Y');?>
+				<i class="fa fa-calendar"></i> <?php //echo get_the_dat('d.m.Y');?>
 			</div>
 		</div>
 	</div>

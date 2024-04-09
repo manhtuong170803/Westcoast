@@ -35,6 +35,14 @@ $wrapper_classes   = apply_filters(
 		'images',
 	)
 );
+
+$available_variations = $product->get_available_variations();
+$attributes = $product->get_variation_attributes();
+// print_r($attributes);
+$attribute_keys  = array_keys( $attributes );
+$variations_json = wp_json_encode( $available_variations );
+$variations_attr = function_exists( 'wc_esc_json' ) ? wc_esc_json( $variations_json ) : _wp_specialchars( $variations_json, ENT_QUOTES, 'UTF-8', true );
+
 ?>
 <div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', $wrapper_classes ) ) ); ?>" data-columns="<?php echo esc_attr( $columns ); ?>" style="opacity: 0; transition: opacity .25s ease-in-out;">
 	<div class="woocommerce-product-gallery__wrapper">
@@ -53,7 +61,13 @@ $wrapper_classes   = apply_filters(
 		?>
 	</div>
 	<?php if ($product->is_type('variable')) { ?>
+
 	<div class="product-image-instant-quote-holder">
+		
+		<?php if ( empty( $available_variations ) && false !== $available_variations ) : ?>
+			<?php echo do_shortcode('[contact-form-7 id="2baf3da" title="Price Enquiry"]');?>
+		<?php else : ?>
+
 		<div class="title">Instant Quote</div>
 		<div class="desc">Please fill in your suburb and days you'd like to hire the skip-bin
 			and you will be provided with an instant quote on this product.
@@ -64,6 +78,7 @@ $wrapper_classes   = apply_filters(
 				<i class="fa fa-location-arrow"></i><input type="text" 
 				id="single-product-autocomplete-input" onKeyUp="singleProductKeyup(this);"
 			 onChange="singleProductKeyup(this);" >
+			 
 			</div>
 			
 			 <ul id="single-product-autocomplete-list">
@@ -76,14 +91,8 @@ $wrapper_classes   = apply_filters(
 		<!-- <div class="product-price-holder">
 			<?php //echo $product->get_price_html();?> <div class="inc-gst">inc.GST</div>
 		</div> -->
+		<?php endif;?>
 		<?php 
-			$available_variations = $product->get_available_variations();
-			$attributes = $product->get_variation_attributes();
-			// print_r($attributes);
-
-			$attribute_keys  = array_keys( $attributes );
-			$variations_json = wp_json_encode( $available_variations );
-			$variations_attr = function_exists( 'wc_esc_json' ) ? wc_esc_json( $variations_json ) : _wp_specialchars( $variations_json, ENT_QUOTES, 'UTF-8', true );
 			
 			do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 			
@@ -91,7 +100,8 @@ $wrapper_classes   = apply_filters(
 				<?php do_action( 'woocommerce_before_variations_form' ); ?>
 			
 				<?php if ( empty( $available_variations ) && false !== $available_variations ) : ?>
-					<p class="stock out-of-stock"><?php echo esc_html( apply_filters( 'woocommerce_out_of_stock_message', __( 'This product is currently out of stock and unavailable.', 'woocommerce' ) ) ); ?></p>
+
+					<!-- <p class="stock out-of-stock"><?php //echo esc_html( apply_filters( 'woocommerce_out_of_stock_message', __( 'This product is currently out of stock and unavailable.', 'woocommerce' ) ) ); ?></p> -->
 				<?php else : ?>
 					<table class="variations" cellspacing="0" role="presentation">
 						<tbody>

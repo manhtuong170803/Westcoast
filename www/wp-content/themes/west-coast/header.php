@@ -60,13 +60,12 @@ $navbar_type       = get_theme_mod( 'understrap_navbar_type', 'collapse' );
 				<div class="search-input-holder">
 					<div class="title">Quote:</div>
 					<i class="fa fa-location-arrow"></i><input type="text" 
-						id="header-product-autocomplete-input" onKeyUp="headerProductKeyup(this);" 
-						placeholder="Type your suburb here">
+						id="header-product-autocomplete-input" onKeyUp="headerProductKeyup(this);" onChange="headerProductKeyup(this);"
+						placeholder="Type your suburb here" />
 					<ul id="header-product-autocomplete-list">
 
 			 		</ul>
 				</div>
-			</div>
 				<div class="mobile-menu-dropdown">
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdow"
 					aria-controls="navbarNavDropdow" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation',
@@ -74,7 +73,6 @@ $navbar_type       = get_theme_mod( 'understrap_navbar_type', 'collapse' );
 					<span>Menu</span><i class="fa fa-bars"></i>
 					</button>
 				</div>
-
 				<?php 
 				wp_nav_menu(
 					array(
@@ -89,6 +87,10 @@ $navbar_type       = get_theme_mod( 'understrap_navbar_type', 'collapse' );
 					)
 				); 
 				?>
+			</div>
+				
+
+				
 			</div>
 		</nav>
 		<!-- ******************* The Navbar Area ******************* -->
@@ -143,14 +145,14 @@ $navbar_type       = get_theme_mod( 'understrap_navbar_type', 'collapse' );
 					<?php
 						$args = array(
 							'post_type' => 'product',
-							'orderby' => 'title',
-							'order' => 'ASC',
-							'product_cat' => 'Bin',
+							//'orderby' => 'title',
+							//'order' => 'ASC',
+							//'product_cat' => 'Bin',
 							'posts_per_page' => 4
 						);
 						$index = 0;
 						$loop = new WP_Query($args);
-						while($loop->have_posts() ) : $loop->the_post;
+						while($loop->have_posts() ) : $loop->the_post(); global $product;
 						
 						global $product;
 						$index++;
@@ -161,39 +163,48 @@ $navbar_type       = get_theme_mod( 'understrap_navbar_type', 'collapse' );
 								$attribute_depo = $variations['attributes']['attribute_depo'];
 								$attribute_distance = $variations['attributes']['attribute_distance'];
 								$price_html = $variations['price_html'];
-								
-
-
-
-								// $variations_html .= <div
-								// 						class='depo-price'
-								// 						data-productid='$product->id'
-								// 						data-depo='$attribute_depo'
-								// 						data-distance='$attribute_distance'>";"
-								// $variations_html .= $price_html;
-								// $variations_html .= </div>;
+								$variations_html .= "<div
+														class='depo-price'
+														data-productid='$product->id'
+														data-depo='$attribute_depo'
+														data-distance='$attribute_distance'>";
+								$variations_html .= $price_html;
+								$variations_html .= '</div>';
 
 							}
 						}
 					?>
 					<div class="col-lg-3">
-						<a 
+						<?php if ( empty( $available_variations ) && false !== $available_variations ) : ?>
+							<a 
+								href="<?php the_permalink();?>" 
+								class="quick-select-bin"
+								data-product="<?php echo $product->id; ?>"
+								data-distance=""
+								data-depo=""
+							>
+						<?php else :?>
+							<a 
 							href="#" 
 							class="quick-select-bin"
 							onClick="headereProductToCart(this);"
 							data-product="<?php echo $product->id; ?>"
 							data-distance=""
 							data-depo=""
-						>
+							>
+						<?php endif ;?>
 							<div class="title">
 								<?php the_title();?>
-								4m3 Skip Bin
 							</div>
 							<?php $image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'medium');?>
 							<img src="<?php echo $image[0];?>" alt="<?php the_field('full_title'); ?>">
 							<div class="price">
-								<?php echo $product->get_price_html();?>
-								$100
+							<?php if ( empty( $available_variations ) && false !== $available_variations ) : ?>
+								<?php //echo $product->get_price_html();?>
+								Order
+								<?php else :?>
+								<?php echo $variations_html; ?>
+								<?php endif ;?>
 							</div>
 							<div class="hire">
 								Up to 7 Day Hire inc. GST
@@ -219,7 +230,7 @@ $navbar_type       = get_theme_mod( 'understrap_navbar_type', 'collapse' );
 						</a>
 					</div>
 					<?php endwhile;?>
-					<?php wp_reset_query();?>
+                	<?php wp_reset_query();?>
 				</div>
 			</div>
 		</div>

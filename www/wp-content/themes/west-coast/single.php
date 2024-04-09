@@ -13,9 +13,9 @@ $container = get_theme_mod( 'understrap_container_type' );
 ?>
 
 <div class="post-header-holder">
-	<?php if (has_post_thumbnail()){ ?>
+	<!-- <?php if (has_post_thumbnail()){ ?>
 		style="background-image:url(<?php echo get_the_post_thumbnail_url();?>);"
-	<?php } ?>
+	<?php } ?> -->
 	<div class="container">
 		<header class="entry-header">
 			<?php the_title( '<h1 class="entry-title">', '</h1>');?>

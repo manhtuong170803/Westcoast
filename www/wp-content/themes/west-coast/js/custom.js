@@ -3405,7 +3405,7 @@ jQuery(document).ready(function ($) {
        console.log('fired');
         $('#single-product-placeholder').hide(0);
     });
-    //exampleContent();
+    // exampleContent();
 
 });
 
@@ -3424,7 +3424,7 @@ function headerProductKeyup(obj){
   let currentUrl = window.location.pathname;
   if (val){
       searchResults.forEach(function(location){
-          let distance = ''
+          let distance = '';
           if(location ['Distance'] > 0 && location['Distance'] < 25){
               distance = '0-25km';
           }
@@ -3504,7 +3504,7 @@ function singleProductKeyup(obj){
 
     if (val){
         searchResults.forEach(function(location){
-            let distance = ''
+            let distance = '';
             if(location ['Distance'] > 0 && location['Distance'] < 25){
                 distance = '0-25km';
             }
@@ -3517,7 +3517,7 @@ function singleProductKeyup(obj){
             if(location ['Distance'] >= 75 && location['Distance'] < 100){
                 distance = '75-100km';
             }
-            if(location ['Distance']  <= 100 ){
+            if(location ['Distance']  >= 100 ){
                 distance = '100km+';
             }
 
@@ -3546,7 +3546,7 @@ function exampleContent() {
     var singleproductautocompletelist = ""
     var searchResults = locations.slice(0, 4);
     searchResults.forEach(function(location){
-        let distance = ''
+        let distance = '';
         if(location ['Distance'] > 0 && location['Distance'] < 25){
             distance = '0-25km';
         }
@@ -3559,11 +3559,11 @@ function exampleContent() {
         if(location ['Distance'] >= 75 && location['Distance'] < 100){
             distance = '75-100km';
         }
-        if(location ['Distance']  <= 100 ){
+        if(location ['Distance']  >= 100 ){
             distance = '100km+';
         }
         singleproductautocompletelist += "<li>"
-        singleproductautocompletelist += "<a href='" + currentUrl + " ?attribute_depo="+location['Depo']
+        singleproductautocompletelist += "<a href='" + currentUrl + "?attribute_depo="+location['Depo']
         +"&attribute_distance="+distance+"'>";
         singleproductautocompletelist += Location["Suburb"] + " _ " + Location["Postcode"]
         singleproductautocompletelist += "</a>"

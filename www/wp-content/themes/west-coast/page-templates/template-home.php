@@ -91,14 +91,21 @@ if ( is_front_page() ) {
                 <?php
                     $args = array(
                         'post_type' => 'product',
-                        'orderby' => 'title',
-                        'order' => 'ASC',
-                        'product_cat' => 'Bin',
+                        // 'orderby' => 'title',
+                        // 'order' => 'ASC',
+                        //'product_cat' => 'Bin',
+                        'tax_query' => array(
+                            array(
+                                'taxonomy' => 'product_cat',
+                                'field' => 'slug',
+                                'terms' => 'bin'
+                            )
+                        ),
                         'posts_per_page' => 4
                     );
                     $index = 0;
                     $loop = new WP_Query($args);
-                    while($loop->have_posts()) : $loop->the_post; global $product;
+                    while($loop->have_posts()) : $loop->the_post(); global $product;
                     $index++;
                 ?>
                 <div class="home-product">
@@ -113,12 +120,6 @@ if ( is_front_page() ) {
                         <div class="col-xl-4 col-md-6">
                             <a href='<?php the_permalink();?>' class="title"><?php the_field('full_title')?></a>
                             <?php the_excerpt();?>
-                            <!-- <ul>
-                                <li>Garden & Household clean-up</li>
-                                <li>Heavy Loads (dirt, concrete, bricks or rubble)</li>
-                                <li>Ideal for narrow alleys or small streets</li>
-                                <li>Building Sites</li>
-                            </ul> -->
                         </div>
                         <div class="col-xl-4 col-lg-12">
                             <div class="home-product-circles">
@@ -155,8 +156,6 @@ if ( is_front_page() ) {
                     <a href='<?php the_permalink();?>' class="abs-holder-button">GET A QUOTE FOR THIS SKIP BIN</a>
                 </div>
                 
-               
-                <?php the_title();?>
                 <?php endwhile;?>
                 <?php wp_reset_query();?>
                 

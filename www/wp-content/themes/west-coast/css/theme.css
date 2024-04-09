@@ -1538,8 +1538,22 @@ a.product_type_variable.add_to_cart_button.btn.btn-outline-primary.btn-block {
   box-shadow: none;
 }
 
+a.product_type_variable.btn.btn-outline-primary.btn-block {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: black !important;
+  background: #FFBC00 !important;
+  border: none !important;
+  text-align: center;
+  display: block;
+  border-radius: 15px !important;
+  width: 100%;
+  box-shadow: none;
+}
+
 #quick-select-bin {
-  padding-top: 30px;
+  padding-top: 0px;
   opacity: 0;
   max-height: 0px;
   transition: ease 0.5s all;
@@ -1547,6 +1561,7 @@ a.product_type_variable.add_to_cart_button.btn.btn-outline-primary.btn-block {
 #quick-select-bin.active {
   opacity: 1;
   max-height: 800px;
+  padding-top: 30px;
 }
 @media (max-width: 992px) {
   #quick-select-bin.active {
@@ -1847,6 +1862,27 @@ a.product_type_variable.add_to_cart_button.btn.btn-outline-primary.btn-block {
   line-height: 1.25;
   border-top: 2px solid #FFBC00;
   padding: 0px;
+}
+
+.product-image-instant-quote-holder .wpcf7-form-control-wrap input.wpcf7-form-control.wpcf7-text.wpcf7-validates-as-required {
+  border-radius: 15px;
+  padding: 0.5em 1em;
+  height: auto;
+  margin-bottom: 6px;
+}
+.product-image-instant-quote-holder .wpcf7-form-control-wrap textarea.wpcf7-form-control.wpcf7-text.wpcf7-validates-as-required {
+  border: 3px solid #cbcbcb;
+  border-radius: 15px;
+  padding: 0.5em 1em;
+  min-height: 175px;
+}
+.product-image-instant-quote-holder input.wpcf7-form-control.wpcf7-submit.has-spinner[type=submit] {
+  display: inline-block;
+  background: #dfa503;
+  color: black;
+  width: auto;
+  box-shadow: none !important;
+  border: none;
 }
 
 /*# sourceMappingURL=theme.css.map */
