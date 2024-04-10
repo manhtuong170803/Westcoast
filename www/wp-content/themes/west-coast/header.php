@@ -152,14 +152,15 @@ $navbar_type       = get_theme_mod( 'understrap_navbar_type', 'collapse' );
 						);
 						$index = 0;
 						$loop = new WP_Query($args);
-						while($loop->have_posts() ) : $loop->the_post(); global $product;
+						while($loop->have_posts() ) : $loop->the_post();
 						
 						global $product;
 						$index++;
-						$varitation_html= "";
+						$variations_html= "";
 						if ($product->is_type('variable')){
 							$vailable_variations = $product->get_available_variations();
-							foreach ($vailable_variations as $variations) {
+							foreach($vailable_variations as $variations) {
+								// print_r($vailable['attribute']);
 								$attribute_depo = $variations['attributes']['attribute_depo'];
 								$attribute_distance = $variations['attributes']['attribute_distance'];
 								$price_html = $variations['price_html'];
@@ -169,13 +170,13 @@ $navbar_type       = get_theme_mod( 'understrap_navbar_type', 'collapse' );
 														data-depo='$attribute_depo'
 														data-distance='$attribute_distance'>";
 								$variations_html .= $price_html;
-								$variations_html .= '</div>';
+								$variations_html .= "</div>";
 
 							}
 						}
 					?>
 					<div class="col-lg-3">
-						<?php if ( empty( $available_variations ) && false !== $available_variations ) : ?>
+						<?php if ( isset( $available_variations ) && empty( $available_variations ) && false !== $available_variations ) : ?>
 							<a 
 								href="<?php the_permalink();?>" 
 								class="quick-select-bin"
@@ -187,7 +188,7 @@ $navbar_type       = get_theme_mod( 'understrap_navbar_type', 'collapse' );
 							<a 
 							href="#" 
 							class="quick-select-bin"
-							onClick="headereProductToCart(this);"
+							onClick="headerProductToCart(this);"
 							data-product="<?php echo $product->id; ?>"
 							data-distance=""
 							data-depo=""
@@ -199,7 +200,7 @@ $navbar_type       = get_theme_mod( 'understrap_navbar_type', 'collapse' );
 							<?php $image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'medium');?>
 							<img src="<?php echo $image[0];?>" alt="<?php the_field('full_title'); ?>">
 							<div class="price">
-							<?php if ( empty( $available_variations ) && false !== $available_variations ) : ?>
+							<?php if ( isset( $available_variations ) && empty( $available_variations ) && false !== $available_variations ) : ?>
 								<?php //echo $product->get_price_html();?>
 								Order
 								<?php else :?>
@@ -229,6 +230,7 @@ $navbar_type       = get_theme_mod( 'understrap_navbar_type', 'collapse' );
 							</div>
 						</a>
 					</div>
+					
 					<?php endwhile;?>
                 	<?php wp_reset_query();?>
 				</div>

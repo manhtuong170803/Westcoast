@@ -1885,4 +1885,21 @@ a.product_type_variable.btn.btn-outline-primary.btn-block {
   border: none;
 }
 
+.wc-block-cart__submit-container {
+  text-transform: uppercase;
+  display: block;
+  font-size: 20px;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 30px;
+  background: #FFBC00;
+  width: 100%;
+}
+.wc-block-cart__submit-container a.components-button.wc-block-components-button.wp-element-button.wc-block-cart__submit-button.contained {
+  text-decoration: none;
+}
+.wc-block-cart__submit-container .wc-block-components-button__text {
+  color: black;
+}
+
 /*# sourceMappingURL=theme.css.map */

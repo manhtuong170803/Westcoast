@@ -3411,6 +3411,7 @@ jQuery(document).ready(function ($) {
 
 function headerProductKeyup(obj){
   var val = jQuery(obj).val();
+  
   var searchResults = locations.filter(function(location){
       if (location["Suburb"].toLowerCase().indexOf(val.toLowerCase()) !== -1){
           return true
@@ -3442,9 +3443,9 @@ function headerProductKeyup(obj){
           }
           singleproductautocompletelist += "<li>"
           singleproductautocompletelist += "<a href='#' onClick='javascript:headerShortcodeProducts(this);' data-distance="
-          +distance+" data-depo="+location['Depo']+" data-suburb="+ Location["Suburb"] +">";
-          singleproductautocompletelist += Location["Suburb"] + " _ " + Location["Postcode"]
-          singleproductautocompletelist += distance + " _ " + Location["Depo"]
+          +distance+" data-depo="+location['Depo']+" data-suburb="+ location["Suburb"] +">";
+          singleproductautocompletelist += location["Suburb"] + " - " + location["Postcode"]
+          singleproductautocompletelist += distance + " - " + location["Depo"]
           singleproductautocompletelist += "</a>"
           singleproductautocompletelist += "</li>"
       })
@@ -3461,7 +3462,7 @@ function headerProductKeyup(obj){
 
 }
 
-function headerShortcodeProducts(ojb) {
+function headerShortcodeProducts(obj) {
   jQuery('#header-product-autocomplete-list').html("")
   jQuery('#header-product-autocomplete-input').addClass('active')
   jQuery('#quick-select-bin').addClass('active')
@@ -3470,10 +3471,10 @@ function headerShortcodeProducts(ojb) {
   var suburb = jQuery(obj).data('suburb')
   jQuery('#header-product-autocomplete-input').val(suburb)
   jQuery('.depo-price').each(function (){
-    if ((jQuery(this).add('depo') === depo) && (jQuery(this).add('distance') === distance)) {
+    if ((jQuery(this).data('depo') === depo) && (jQuery(this).data('distance') === distance)) {
       jQuery(this).addClass('active')
       var productid = jQuery(this).data('productid');
-      jQuery(this).parent().parent().attr('href', '/?add-to-cart='+productid+'&attribute_depo='+depo+'&attribute_distance='+distance)
+      jQuery(this).parent().attr('href', '/?add-to-cart='+productid+'&attribute_depo='+depo+'&attribute_distance='+distance)
       //jQuery('.quick-select-bin').data('distance', distance)
       //jQuery('.quick-select-bin').data('depo', depo)
     }else {
@@ -3523,7 +3524,7 @@ function singleProductKeyup(obj){
 
             singleproductautocompletelist += "<li>";
             singleproductautocompletelist += "<a href='" + currentUrl + "?attribute_depo="+location['Depo'] +"&attribute_distance="+distance+"'>";
-            singleproductautocompletelist += location["Suburb"] + " _ " + location["Postcode"];
+            singleproductautocompletelist += location["Suburb"] + " - " + location["Postcode"];
             singleproductautocompletelist += "</a>";
             singleproductautocompletelist += "</li>";
         })
@@ -3563,9 +3564,8 @@ function exampleContent() {
             distance = '100km+';
         }
         singleproductautocompletelist += "<li>"
-        singleproductautocompletelist += "<a href='" + currentUrl + "?attribute_depo="+location['Depo']
-        +"&attribute_distance="+distance+"'>";
-        singleproductautocompletelist += Location["Suburb"] + " _ " + Location["Postcode"]
+        singleproductautocompletelist += "<a href='" + currentUrl + "?attribute_depo="+location['Depo']+"&attribute_distance="+distance+"'>";
+        singleproductautocompletelist += Location["Suburb"] + " - " + Location["Postcode"]
         singleproductautocompletelist += "</a>"
         singleproductautocompletelist += "</li>"
     })
